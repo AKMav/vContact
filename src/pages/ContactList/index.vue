@@ -1,7 +1,7 @@
 <template>
   <div class="contacts container">
     <div class="controls">
-      searchinput etc
+      <SearchFilter />
     </div>
 
     <ItemList :data="contacts" />
@@ -21,11 +21,13 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import ItemList from "@/components/ItemList/index.vue";
+import SearchFilter from "@/components/SearchFilter/index.vue";
 
 export default {
   name: "ContactList",
   components: {
-    ItemList
+    ItemList,
+    SearchFilter
   },
 
   setup() {

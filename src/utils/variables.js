@@ -1,0 +1,1 @@
+export const tagsSource = ["Family", "Business", "Friends", "Gym", "Neighbors", "Others"];

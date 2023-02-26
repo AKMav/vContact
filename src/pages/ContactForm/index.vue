@@ -108,6 +108,7 @@
 import { computed, ref, onMounted } from "vue";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
+import { tagsSource } from "@/utils/variables.js";
 
 export default {
   name: "ContactForm",
@@ -116,7 +117,7 @@ export default {
     const route  = useRoute();
     const router  = useRouter();
     
-    const tags = ref([{ value: "Family", active: false }, { value: "Business", active: false }, { value: "Friends", active: false }, { value: "Gym", active: false }, { value: "Neighbors", active: false }, { value: "Others", active: false }]);
+    const tags = ref(tagsSource.map(tag => ({ value: tag, action: false })));
 
     const initValue = {
       fullname: "",
