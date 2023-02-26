@@ -1,14 +1,18 @@
 <script setup>
+import { useRouter, useRoute } from "vue-router";
+
+const router = useRouter();
+const route = useRoute();
+
+if (route.path === "/") {
+  router.replace("/list");
+}
+
 </script>
 
 <template>
-  <div>
-    <div
-      class="spinner-border text-warning"
-      role="status"
-    >
-      <span class="visually-hidden">Loading...</span>
-    </div>
+  <div class="app-wrapper container bg-light">
+    <RouterView />
   </div>
 </template>
 

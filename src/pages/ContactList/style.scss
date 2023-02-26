@@ -1,0 +1,15 @@
+.contacts {
+  &.container {
+    padding: 0;
+  }
+
+
+  &>.add-btn {
+    font-size: 18px;
+
+    .bi {
+      height: 100%;
+      width: 24px;
+    }
+  }
+}

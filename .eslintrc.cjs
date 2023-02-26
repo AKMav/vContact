@@ -10,6 +10,7 @@ module.exports = {
   plugins: ["vue", "html"],
   rules: {
     semi: "error",
-    "quotes": ["error", "double"]
+    quotes: ["error", "double"],
+    "object-curly-spacing": ["error", "always"],
   },
 };
