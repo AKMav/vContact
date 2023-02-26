@@ -19,6 +19,7 @@
 <script>
 import { computed } from "vue";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 import ItemList from "@/components/ItemList/index.vue";
 
 export default {
@@ -29,15 +30,10 @@ export default {
 
   setup() {
     const store = useStore();
+    const router = useRouter();
     
     const addContact = () => {
-      return store.dispatch("addNewContact",         {
-          fullname: "User",
-          email: "email@email.com",
-          number: "+998909989121",
-          tags: ["work"],
-          id: Date.now().toString()
-        });
+      router.push("/contact");
     };
 
     return {

@@ -23,6 +23,7 @@
     <button
       type="button"
       class="add-btn btn btn-primary col-2"
+      @click="redirectForChange(itemData.id)"
     >
       Change contact
     </button>
@@ -31,6 +32,7 @@
 
 <script>
 import { computed } from "vue";
+import { useRouter } from "vue-router";
 export default {
   name: "ContactItem",
   props: {
@@ -44,8 +46,14 @@ export default {
       return `${props.itemData.idx+1}. Fullname: ${props.itemData.fullname} - Email: ${props.itemData.email} - Phone number: ${props.itemData.number}`;
     });
 
+    const router = useRouter();
+    const redirectForChange = (id) => {
+      router.push(`/contact/${id}`);
+    };
+    
     return {
-      itemTitle
+      itemTitle,
+      redirectForChange
     };
   }
 };

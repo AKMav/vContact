@@ -1,8 +1,19 @@
 <template>
   <div class="contact-form container">
-    <h2 class="w-50 mb-3">
-      Contact info
-    </h2>
+    <header
+      class="w-75 mb-4"
+    >
+      <h2 class="w-50">
+        Contact info
+      </h2>
+      <button
+        type="button"
+        class="return-btn btn btn-primary"
+        @click="goTomain"
+      >
+        Return to contact list
+      </button>
+    </header>
     <form
       action.prevent=""
     >
@@ -66,7 +77,7 @@
         </div>
       </div>
     </form>
-    <div class="action-btns w-75 row">
+    <div class="action-btns w-75 row mb-5">
       <button
         type="button"
         class="btn btn-outline-success col-3"
@@ -166,6 +177,11 @@ export default {
       router.push("/");
     };
 
+    const goTomain = () => {
+      clearAll();
+      router.push("/");
+    };
+
     return {
       contacts: computed(() => store.getters.contacts),
       tags,
@@ -174,7 +190,8 @@ export default {
       addContact,
       choseTag,
       clearAll,
-      removeContact
+      removeContact,
+      goTomain
     };
   }
 };
