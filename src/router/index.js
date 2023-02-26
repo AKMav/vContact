@@ -1,23 +1,24 @@
 import { createRouter, createWebHistory } from "vue-router";
-import App from "@/App.vue";
 import ContactList from "@/pages/ContactList/index.vue";
+import ContactForm from "@/pages/ContactForm/index.vue";
 
 const routes = [
     {
         path: "/",
-        name: "App",
-        component: App,
+        name: "ContactList",
+        component: ContactList,
     },
     {        
-      path: "/list",
-      name: "ContactList",
-      component: ContactList
-    },
-    // {        
-    //   path: "/contact/:id",
-    //   name: "ContactList",
-    //   component: ContactList
-    // }
+      path: "/contact",
+      name: "ContactForm",
+      component: ContactForm,
+      children: [
+        {
+          path: ":id",
+          component: ContactForm, 
+        }
+      ]
+    }
 ];
 
 const router = createRouter({

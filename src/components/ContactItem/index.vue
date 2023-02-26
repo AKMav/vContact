@@ -16,7 +16,7 @@
       <div class="col">
         <h5>Phone number:</h5>
         <p class="info-text">
-          {{ itemData.number }}
+          {{ itemData.phone }}
         </p>
       </div>
     </div>

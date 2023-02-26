@@ -9,6 +9,7 @@
     <button
       type="button"
       class="add-btn btn btn-primary w-50"
+      @click="addContact"
     >
       Add contact
     </button>
@@ -16,7 +17,8 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { computed } from "vue";
+import { useStore } from "vuex";
 import ItemList from "@/components/ItemList/index.vue";
 
 export default {
@@ -24,29 +26,23 @@ export default {
   components: {
     ItemList
   },
+
   setup() {
-    const contacts = ref([
-      {
-        fullname: "User",
-        email: "email@email.com",
-        number: "+998909989121",
-        tags: ["family"],
-        id: Date.now().toString()
-      },
-      {
-        fullname: "User",
-        email: "email@email.com",
-        number: "+998909989121",
-        tags: ["work"],
-        id: Date.now().toString()
-      }
-    ]);
+    const store = useStore();
     
-    console.log( contacts );
-    
-  
+    const addContact = () => {
+      return store.dispatch("addNewContact",         {
+          fullname: "User",
+          email: "email@email.com",
+          number: "+998909989121",
+          tags: ["work"],
+          id: Date.now().toString()
+        });
+    };
+
     return {
-      contacts
+      contacts: computed(() => store.getters.contacts),
+      addContact
     };
   }
 };

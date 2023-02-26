@@ -1,13 +1,4 @@
 <script setup>
-import { useRouter, useRoute } from "vue-router";
-
-const router = useRouter();
-const route = useRoute();
-
-if (route.path === "/") {
-  router.replace("/list");
-}
-
 </script>
 
 <template>
