@@ -3,7 +3,10 @@
 
 <template>
   <div>
-    <div class="spinner-border text-warning" role="status">
+    <div
+      class="spinner-border text-warning"
+      role="status"
+    >
       <span class="visually-hidden">Loading...</span>
     </div>
   </div>
