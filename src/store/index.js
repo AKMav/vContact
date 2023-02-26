@@ -5,31 +5,31 @@ export const store = createStore({
     return {
       contacts: [
         {
-          fullname: "User",
-          email: "email@email.com",
-          phone: "+998909989121",
-          tags: ["Family"],
+          fullname: "Antony Stark",
+          email: "stark@gmail.com",
+          phone: "+998901234567",
+          tags: ["Family", "Neighbors" ],
           id: "21"
         },
         {
-          fullname: "Akmal",
-          email: "akmal@email.com",
-          phone: "+998909981920",
-          tags: ["Family", "Work"],
+          fullname: "Bruce Wayne",
+          email: "batman@gmail.com",
+          phone: "+998907778899",
+          tags: ["Family", "Work", "Gym"],
           id: "20"
         },
         {
-          fullname: "Alex",
-          email: "alex@email.com",
-          phone: "+998941231920",
-          tags: ["Family", "Gym"],
+          fullname: "Thor Odinson",
+          email: "mighty_avenger@gmail.com",
+          phone: "+998900081254",
+          tags: ["Friends", "Gym"],
           id: "19"
         },
         {
           fullname: "Tanos",
           email: "tanos@cosmo.com",
           phone: "+998009876543",
-          tags: ["Family", "Gym", "Other"],
+          tags: ["Gym", "Other"],
           id: "18"
         },
       ]

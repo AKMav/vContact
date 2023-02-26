@@ -1,7 +1,7 @@
 <template>
   <div class="contacts container">
     <div class="controls">
-      <SearchFilter @onSearch="filterSearch" />
+      <SearchFilter @on-search="filterSearch" />
     </div>
 
     <ItemList :data="contacts" />
@@ -51,10 +51,22 @@ export default {
         let { query, type } = searchParams.value;
 
         if (searchParams.value.type) {
-          return store.getters.contacts.filter(item => item[type].includes(query));
+          return store.getters.contacts.filter(item => {
+            if (Array.isArray(item[type])) {
+              return item[type].map(i => i.toLowerCase()).includes(query.toLowerCase());
+            } else {
+              return item[type].toLowerCase().includes(query.toLowerCase());
+            }
+          });
         } else {
           return store.getters.contacts.filter(item => {
-            return Object.values(item).some(value => value.includes(query));
+            return Object.values(item).some(value => {
+              if (Array.isArray(value)) {
+                return value.map(i => i.toLowerCase()).includes(query.toLowerCase());
+            } else {
+              return value.includes(query.toLowerCase());
+            }
+            });
           });
         }        
       }),
