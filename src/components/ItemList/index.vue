@@ -23,8 +23,6 @@ export default {
       default: () => []
     }
   },
-  setup() {
-  }
 };
 </script>
 
