@@ -8,7 +8,7 @@
 
     <button
       type="button"
-      class="add-btn btn btn-primary w-50"
+      class="add-btn btn btn-primary w-50 mt-5"
       @click="addContact"
     >
       Add contact
