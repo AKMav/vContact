@@ -11,6 +11,27 @@ export const store = createStore({
           tags: ["Family"],
           id: "21"
         },
+        {
+          fullname: "Akmal",
+          email: "akmal@email.com",
+          phone: "+998909981920",
+          tags: ["Family", "Work"],
+          id: "20"
+        },
+        {
+          fullname: "Alex",
+          email: "alex@email.com",
+          phone: "+998941231920",
+          tags: ["Family", "Gym"],
+          id: "19"
+        },
+        {
+          fullname: "Tanos",
+          email: "tanos@cosmo.com",
+          phone: "+998009876543",
+          tags: ["Family", "Gym", "Other"],
+          id: "18"
+        },
       ]
     };
   },

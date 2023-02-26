@@ -1,7 +1,7 @@
 <template>
   <div class="contacts container">
     <div class="controls">
-      <SearchFilter />
+      <SearchFilter @onSearch="filterSearch" />
     </div>
 
     <ItemList :data="contacts" />
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import ItemList from "@/components/ItemList/index.vue";
@@ -33,14 +33,34 @@ export default {
   setup() {
     const store = useStore();
     const router = useRouter();
+    const searchParams = ref({
+      type: "",
+      query: ""
+    });
     
     const addContact = () => {
       router.push("/contact");
     };
 
+    const filterSearch = (params) => {
+      searchParams.value = params;
+    };
+
     return {
-      contacts: computed(() => store.getters.contacts),
-      addContact
+      contacts: computed(() => {
+        let { query, type } = searchParams.value;
+
+        if (searchParams.value.type) {
+          return store.getters.contacts.filter(item => item[type].includes(query));
+        } else {
+          return store.getters.contacts.filter(item => {
+            return Object.values(item).some(value => value.includes(query));
+          });
+        }        
+      }),
+      searchParams,
+      addContact,
+      filterSearch
     };
   }
 };

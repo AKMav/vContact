@@ -12,16 +12,16 @@
     >
       <option
         value=""
-        disabled
         selected
       >
-        Search options
+        Default
       </option>
       <option
         v-for="item of options"
         :key="item"
+        :value="item"
       >
-        {{ item }}
+        {{ `By ${item}` }}
       </option>
     </select>
     <button
@@ -39,9 +39,10 @@ import { ref } from "vue";
 
 export default {
   name: "SearchFilter",
-  setup() {
+  // eslint-disable-next-line no-unused-vars
+  setup(_, { emit }) {
     const selected = ref("");
-    const options = ["name", "email", "phone", "tags"];
+    const options = ["fullname", "email", "phone", "tags"];
     const searchQuery = ref("");
 
     const optionChange = (e) => {
@@ -49,7 +50,7 @@ export default {
     };
 
     const onSearch = () => {
-      
+      emit("onSearch", { type: selected.value, query: searchQuery.value });
     };
     
     return {
