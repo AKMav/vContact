@@ -9,7 +9,7 @@
       <button
         type="button"
         class="return-btn btn btn-primary"
-        @click="goTomain"
+        @click="goToMain"
       >
         Return to contact list
       </button>
@@ -29,6 +29,10 @@
           class="form-control"
           placeholder="John Doe"
         >
+        <!-- <i
+          v-if="$v.fullname.$error"
+          class="error"
+        >Error</i> -->
       </div>
       <div class="mb-3 form-row w-75">
         <label
@@ -109,6 +113,8 @@ import { computed, ref, onMounted } from "vue";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
 import { tagsSource } from "@/utils/variables.js";
+import { useVuelidate } from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
 
 export default {
   name: "ContactForm",
@@ -128,6 +134,14 @@ export default {
     };
 
     const contact = ref({ ...initValue });
+
+    const rules = computed(() => ({
+      contact: {
+        fullname: { required }
+      }
+    }));
+
+    const v$ = useVuelidate(rules, contact);
 
     onMounted(() => {
       if (route.params.id) {
@@ -178,7 +192,7 @@ export default {
       router.push("/");
     };
 
-    const goTomain = () => {
+    const goToMain = () => {
       clearAll();
       router.push("/");
     };
@@ -188,15 +202,18 @@ export default {
       tags,
       contact,
       hasId: route.params.id,
+      v$,
       addContact,
       choseTag,
       clearAll,
       removeContact,
-      goTomain
+      goToMain,
+
     };
-  }
+  },
 };
 </script>
+
 <style lang="scss">
 @import './style.scss';
 </style>

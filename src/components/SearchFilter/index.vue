@@ -39,6 +39,7 @@ import { ref } from "vue";
 
 export default {
   name: "SearchFilter",
+  emits: ["onSearch"],
   // eslint-disable-next-line no-unused-vars
   setup(_, { emit }) {
     const selected = ref("");
