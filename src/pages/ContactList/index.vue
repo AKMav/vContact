@@ -5,10 +5,16 @@
     </div>
 
     <ItemList :data="contacts" />
+    <h2
+      v-if="!contacts.length"
+      class="empty-title"
+    >
+      No contacts found
+    </h2>
 
     <button
       type="button"
-      class="add-btn btn btn-primary w-50 mt-5"
+      class="add-btn btn btn-primary w-50 mt-3"
       @click="addContact"
     >
       Add contact
