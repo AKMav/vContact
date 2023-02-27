@@ -24,7 +24,6 @@
   }
 
   form {
-
     .form-row {
       margin: 0 auto;
 
@@ -37,6 +36,15 @@
           padding: 8px 24px;
           margin-bottom: 8px;
         }
+      }
+
+      .input-error {
+        border-color: red;
+      }
+
+      .text-danger {
+        font-size: 14px;
+        font-weight: bold;
       }
     }
   }

@@ -27,12 +27,13 @@
           v-model="contact.fullname"
           type="text"
           class="form-control"
+          :class="{'input-error': !contact.fullname}"
           placeholder="John Doe"
         >
-        <!-- <i
-          v-if="$v.fullname.$error"
-          class="error"
-        >Error</i> -->
+        <i
+          v-if="!contact.fullname"
+          class="text-danger"
+        >Required value</i>
       </div>
       <div class="mb-3 form-row w-75">
         <label
@@ -44,8 +45,13 @@
           v-model="contact.email"
           type="email"
           class="form-control"
+          :class="{'input-error': !contact.email}"
           placeholder="name@example.com"
         >
+        <i
+          v-if="!contact.email"
+          class="text-danger"
+        >Required value</i>
       </div>
       <div class="mb-3 form-row w-75">
         <label
@@ -57,8 +63,13 @@
           v-model="contact.phone"
           type="phone"
           class="form-control"
+          :class="{'input-error': !contact.phone}"
           placeholder="+99899 123 45 67"
         >
+        <i
+          v-if="!contact.phone"
+          class="text-danger"
+        >Required value</i>
       </div>
       <div class="mb-3 form-row w-75">
         <label
@@ -84,14 +95,15 @@
     <div class="action-btns w-75 row mb-5">
       <button
         type="button"
-        class="btn btn-outline-success col-3"
+        class="btn btn-success col-3"
+        :disabled="hasEmptyInput"
         @click="addContact"
       >
         Save changes
       </button>
       <button
         type="button"
-        class="btn btn-outline-warning col-3"
+        class="btn btn-warning col-3"
         @click="clearAll"
       >
         Clear
@@ -99,7 +111,7 @@
       <button
         v-if="hasId"
         type="button"
-        class="btn btn-outline-danger col-3"
+        class="btn btn-danger col-3"
         @click="removeContact"
       >
         Remove contact
@@ -113,8 +125,6 @@ import { computed, ref, onMounted } from "vue";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
 import { tagsSource } from "@/utils/variables.js";
-import { useVuelidate } from "@vuelidate/core";
-import { required } from "@vuelidate/validators";
 
 export default {
   name: "ContactForm",
@@ -134,14 +144,11 @@ export default {
     };
 
     const contact = ref({ ...initValue });
-
-    const rules = computed(() => ({
-      contact: {
-        fullname: { required }
-      }
-    }));
-
-    const v$ = useVuelidate(rules, contact);
+    const hasEmptyInput = computed(() => {
+      if (!contact.value.fullname || !contact.value.email || !contact.value.phone ) {
+        return true;
+      } return false;
+    });
 
     onMounted(() => {
       if (route.params.id) {
@@ -175,6 +182,9 @@ export default {
     };
 
     const addContact = () => {
+      if (hasEmptyInput.value) {
+        return;
+      }
       if (!contact.value.id) {
         contact.value.id = Date.now().toString();
       }
@@ -202,7 +212,7 @@ export default {
       tags,
       contact,
       hasId: route.params.id,
-      v$,
+      hasEmptyInput,
       addContact,
       choseTag,
       clearAll,
