@@ -35,36 +35,23 @@
 </template>
 
 <script>
-import { ref } from "vue";
-
 export default {
   name: "SearchFilter",
-  emits: ["onSearch"],
-  // eslint-disable-next-line no-unused-vars
-  setup(_, { emit }) {
-    const selected = ref("");
-    const options = ["fullname", "email", "phone", "tags"];
-    const searchQuery = ref("");
-
-    const optionChange = (e) => {
-      console.log(e.target.value);
-    };
-
-    const onSearch = () => {
-      emit("onSearch", { type: selected.value, query: searchQuery.value });
-    };
-    
-    return {
-      selected,
-      options,
-      searchQuery,
-      onSearch,
-      optionChange
-    };
-
-
-  }
 };
+</script>
+
+<script setup>
+  import useSearch from "@/logic/SearchFilter/index.js";
+  const emit = defineEmits(["onSearch"]);
+  
+  const onSearch = () => {
+    emit("onSearch", { type: selected.value, query: searchQuery.value });
+  };
+
+  const { selected,
+    options,
+    searchQuery
+    } = useSearch();
 </script>
 
 <style lang="scss">
