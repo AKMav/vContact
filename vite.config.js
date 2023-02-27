@@ -9,6 +9,9 @@ import path from "path";
 export default defineConfig({
   plugins: [vue(), eslint()],
   root: path.resolve(__dirname, "src"),
+  build: {
+    outDir: path.resolve(__dirname, "public"),
+  },
   resolve: {
     alias: {
       "~bootstrap": path.resolve(__dirname, "node_modules/bootstrap"),
